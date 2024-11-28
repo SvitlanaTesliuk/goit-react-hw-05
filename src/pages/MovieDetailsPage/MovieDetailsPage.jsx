@@ -1,5 +1,5 @@
-import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import styles from './MovieDetailPage.module.css';
 
@@ -7,6 +7,8 @@ function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const previousLocation = useRef(location.state?.from || '/'); 
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -30,7 +32,13 @@ function MovieDetailsPage() {
 
   return (
     <div className={styles.movieDetailsContainer}>
-      <button className={styles.goBackBtn} onClick={() => navigate(-1)}>Go back</button>
+      
+      <button
+        className={styles.goBackBtn}
+        onClick={() => navigate(previousLocation.current)}
+      >
+        Go back
+      </button>
       <h1 className={styles.movieTitle}>{movie.title}</h1>
       <p className={styles.movieOverview}>{movie.overview}</p>
       <img
