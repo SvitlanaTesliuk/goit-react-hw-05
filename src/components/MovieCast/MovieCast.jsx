@@ -9,7 +9,7 @@ function MovieCast() {
   useEffect(() => {
     const fetchCast = async () => {
       const options = {
-        headers: { Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}` },
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNGYyNzg4NzdjMGUwYWUxZmIwY2ZkYTY3OWNmNmQxOCIsIm5iZiI6MTczMjIxODMxOC4zMDM2ODY2LCJzdWIiOiI2NzNmNWM5MWFiNGQ2ZDBlOGQxYWRkMjciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.sztGoyHwmC_7etju7QtkRerhcioe9rPo7ze0AiF-afo` },
       };
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
